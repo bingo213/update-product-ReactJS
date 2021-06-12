@@ -1,0 +1,68 @@
+.modal{
+    position: fixed;
+    width: 500px;
+    height: 400px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFF;
+    z-index: 100;
+    border-radius: 5px;
+    overflow-y: scroll;
+    padding: 0 20px;
+}
+.modal::-webkit-scrollbar { 
+    display: none;
+}
+
+.title{
+    font-weight: bold;
+    line-height: 1.25;
+}
+
+.button{
+    position: fixed;
+    top: 0;
+    right: 0;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    cursor: pointer;
+}
+
+.button:hover{
+    background-color: rgba(224, 0, 0, 0.897);
+    transition: 0.3s;
+    color: rgb(224, 224, 224);
+}
+
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(54, 54, 54, 0.7);
+    z-index: 100;
+}
+
+.btnContainer{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.confirmBtn{
+    display: inline-block;
+    margin: 20px 0;
+    background-color: rgb(2, 100, 156);
+    padding: 10px 20px;
+    color: rgb(228, 228, 228);
+    justify-items: right;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+.confirmBtn:hover{
+    background-color: rgb(0, 74, 117);
+    color: rgb(238, 238, 238);
+}

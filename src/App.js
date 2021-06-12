@@ -4,6 +4,8 @@ import './App.css';
 import Modal from './components/Modal/Modal';
 import Table from './components/Table/Table';
 import Pagination from './components/Pagination/Pagination';
+import Block from './components/Modal/Block';
+import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,8 +52,11 @@ function App() {
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
+  const [productChanged, setProductChanged] = useState([])
+  const [isSubmit, setIsSubmit] = useState(false)
+
   const onSubmit = data => {
-    const res = [];
+
     // const keys = Object.keys(data);
     for (let i of product) {
       let check = false;
@@ -77,17 +82,25 @@ function App() {
         }
       }
       if (check) {
-        res.push(tmp);
+        setProductChanged(oldArr => [...oldArr, tmp])
       }
     }
-    console.log(res);
+    console.log(productChanged);
+    setIsOpen(true)
+    setIsSubmit(true)
   };
+
+  const onClose = () =>{
+    setIsOpen(false)
+  }
   
   return (
     loadColor || loadProduct ? (<p>Loading...</p>
       ) : 
     <div className="App">
-      <Modal>Hi, I am Test</Modal>
+      <p className="title">Jason - Re-upload Error Products</p>
+      {isSubmit && productChanged.length==0 ? <ErrorMessage message="Nothing change" /> :
+      <Modal open={isOpen} onClose={onClose}><Block productChanged={productChanged} /></Modal>}
       <Table
         currentProducts={currentProducts}
         color={color}

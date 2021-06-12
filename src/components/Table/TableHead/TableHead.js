@@ -1,9 +1,9 @@
 import React from 'react'
-// import './TableHead.css'
+import style from './TableHead.module.css';
 
 function TableHead() {
     return (
-        <tr>
+        <tr className={style.tbHead}>
             <th>ID</th>
             <th>Error Description</th>
             <th>Product Image</th>

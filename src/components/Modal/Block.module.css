@@ -1,0 +1,32 @@
+.container{
+    display: flex;
+    border-top: 1px solid rgb(233, 233, 233);
+    border-bottom: 1px solid rgb(233, 233, 233);
+}
+
+.image{
+    width: 20%;
+    object-fit: scale-down;
+}
+
+.info{
+    padding: 10px 0 10px 20px;
+}
+
+.info p{
+    margin: 0;
+    padding: 3px;
+    font-size: 15px;
+}
+
+.name{
+    font-weight: bold;
+}
+
+.info span{
+    color: rgb(145, 145, 145);
+    font-size: 14px;
+}
+.info .sku{
+    color: #ff184d;
+}

@@ -2,6 +2,37 @@ table{
     border-collapse: collapse;
 }
 
+.btnContainer{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btnContainer button{
+    background-color: teal;
+    border: none;
+    padding: 8px 20px;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.3s;
+    position: absolute;
+    top: 15px;
+}
+
+.btnContainer button i{
+    display: inline-block;
+    padding-right: 5px;
+}
+
+.btnContainer button:hover{
+    background-color: rgb(3, 80, 80);
+}
+
 table, td, th{
-    border: 1px solid #EBEDEF;
+    border: 1px solid #e0e0e0;
+}
+
+.tab{
+    display: flex;
+    justify-content: center;
 }
