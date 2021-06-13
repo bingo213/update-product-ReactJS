@@ -64,16 +64,7 @@ function HomePage() {
     setIsOpen(true);
     setIsSubmit(true);
   };
-
-  const indexOfLastProduct = currentPage * productPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productPerPage;
-  const currentProducts = product.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
-
-  const paginate = pageNumber => setCurrentPage(pageNumber);
-
+  
   const onOK = () => {
     window.location.reload();
   };
@@ -85,19 +76,28 @@ function HomePage() {
     setIsSubmit(false);
   };
 
+  const indexOfLastProduct = currentPage * productPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productPerPage;
+  const currentProducts = product.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  const paginate = pageNumber => setCurrentPage(pageNumber);
+
   return (
     color.length !== 0 &&
     product.length !== 0 && (
       <div className="App">
         <p id="title">Jason - Re-upload Error Products</p>
         {message.length == 0 && message}
-        {isSubmit && productChanged.length == 0 ? (
+        {isSubmit ? productChanged.length == 0 ? (
           <ErrorMessage message={message} />
         ) : (
           <Modal open={isOpen} onClose={onClose} onOK={onOK}>
             <Block productChanged={productChanged} />
           </Modal>
-        )}
+        ) : <></>}
         <Table
           currentProducts={currentProducts}
           color={color}

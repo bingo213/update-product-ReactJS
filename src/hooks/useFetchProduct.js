@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 
 function useFetchProduct() {
-    const [product, setProduct] = useState([])
+    const [product, setProduct] = useState([]);
 
     useEffect(() => {
         const fetchProduct = async () => {

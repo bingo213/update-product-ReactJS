@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios';
 
 function useFetchColor() {
-    const [color, setColor] = useState([])
+    const [color, setColor] = useState([]);
 
     useEffect(() => {
         const fetchColor = async () => {
