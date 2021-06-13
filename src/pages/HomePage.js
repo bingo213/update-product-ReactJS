@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import '../../App.css';
 import Modal from 'components/Modal/Modal';
 import Table from 'components/Table/Table';
 import Pagination from 'components/Pagination/Pagination';
@@ -7,63 +6,63 @@ import Block from 'components/Modal/Block';
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
 import useFetchProduct from 'hooks/useFetchProduct';
 import useFetchColor from 'hooks/useFetchColor';
-import validateData from 'helper/validateData';
-import checkColor from 'helper/checkColor';
-import { useHistory } from 'react-router-dom';
 
 function HomePage() {
   const [isOpen, setIsOpen] = useState(false);
-  const product = useFetchProduct()
-  const color = useFetchColor()
+  const product = useFetchProduct();
+  const color = useFetchColor();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [productPerPage] = useState(10);
 
-  const [isSubmit, setIsSubmit] = useState(false)
-  const [message, setMessage] = useState("Nothing Change")
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [message, setMessage] = useState('Nothing Change');
 
-  const [productChanged, setProductChanged] = useState([])
+  const [productChanged, setProductChanged] = useState([]);
   const onSubmit = data => {
-    console.log(data);
     for (let i of product) {
       let check = false;
       let tmp = { ...i };
-      // validateData(data[`name${i.id}`], i.name, 50, "product name", "name", {...tmp}, check, setMessage)
-      validateData(data[`sku${i.id}`], i.sku, 20, "sku", "name", tmp, check, setMessage)
+      //Validate product name
       if (typeof data[`name${i.id}`] !== 'undefined') {
-        if (data[`name${i.id}`] === '') setMessage("Product name is required field")
+        if (data[`name${i.id}`] === '')
+          setMessage('Product name is required field');
         else if (data[`name${i.id}`].length > 50)
-          setMessage("Max length of product name is 50 characters")
+          setMessage('Max length of product name is 50 characters');
         else if (i.name !== data[`name${i.id}`]) {
-          tmp = { ...tmp, name: data[`name${i.id}`]};
+          tmp = { ...tmp, name: data[`name${i.id}`] };
           check = true;
         }
       }
+      //Validate sku
       if (typeof data[`sku${i.id}`] !== 'undefined') {
-        if (data[`sku${i.id}`] === '') setMessage("Sku is required field")
+        if (data[`sku${i.id}`] === '') setMessage('Sku is required field');
         else if (data[`sku${i.id}`].length > 20)
-          setMessage("Max length of sku is 20 characters")
+          setMessage('Max length of sku is 20 characters');
         else if (i.sku !== data[`sku${i.id}`]) {
-          tmp = { ...tmp, sku: data[`sku${i.id}`]};
+          tmp = { ...tmp, sku: data[`sku${i.id}`] };
           check = true;
         }
       }
+      //Check color
       if (!i.color && data[`color${i.id}`]) {
         tmp = { ...tmp, color: data[`color${i.id}`] };
         check = true;
       } else {
-        if (data[`color${i.id}`] && color[i.color - 1].name !== data[`color${i.id}`]) {
+        if (
+          data[`color${i.id}`] &&
+          color[i.color - 1].name !== data[`color${i.id}`]
+        ) {
           tmp = { ...tmp, color: data[`color${i.id}`] };
           check = true;
         }
       }
       if (check) {
-        setProductChanged(oldArr => [...oldArr, tmp])
+        setProductChanged(oldArr => [...oldArr, tmp]);
       }
     }
-    console.log(productChanged);
-    setIsOpen(true)
-    setIsSubmit(true)
+    setIsOpen(true);
+    setIsSubmit(true);
   };
 
   const indexOfLastProduct = currentPage * productPerPage;
@@ -75,34 +74,42 @@ function HomePage() {
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
-  const onOK = () =>{
+  const onOK = () => {
     window.location.reload();
-  }
+  };
 
-  const onClose = () =>{
-      setIsOpen(false)
-      setProductChanged([])
-      setIsSubmit(false)
-  }
-  
+  //Close modal
+  const onClose = () => {
+    setIsOpen(false);
+    setProductChanged([]);
+    setIsSubmit(false);
+  };
+
   return (
-    (color.length!==0 && product.length!==0) &&
-    <div className="App">
-      <p id="title">Jason - Re-upload Error Products</p>
-      {message.length==0 && message}
-      {isSubmit && productChanged.length==0 ? <ErrorMessage message={message} /> :
-      <Modal open={isOpen} onClose={onClose} onOK={onOK}><Block productChanged={productChanged} /></Modal>}
-      <Table
-        currentProducts={currentProducts}
-        color={color}
-        onSubmit={onSubmit}
-      />
-      <Pagination
-        productPerPage={productPerPage}
-        totalProduct={product.length}
-        paginate={paginate}
-      />
-    </div>
+    color.length !== 0 &&
+    product.length !== 0 && (
+      <div className="App">
+        <p id="title">Jason - Re-upload Error Products</p>
+        {message.length == 0 && message}
+        {isSubmit && productChanged.length == 0 ? (
+          <ErrorMessage message={message} />
+        ) : (
+          <Modal open={isOpen} onClose={onClose} onOK={onOK}>
+            <Block productChanged={productChanged} />
+          </Modal>
+        )}
+        <Table
+          currentProducts={currentProducts}
+          color={color}
+          onSubmit={onSubmit}
+        />
+        <Pagination
+          productPerPage={productPerPage}
+          totalProduct={product.length}
+          paginate={paginate}
+        />
+      </div>
+    )
   );
 }
 
