@@ -91,13 +91,13 @@ function HomePage() {
       <div className="App">
         <p id="title">Jason - Re-upload Error Products</p>
         {message.length == 0 && message}
-        {isSubmit ? productChanged.length == 0 ? (
+        {isSubmit && productChanged.length == 0 ? (
           <ErrorMessage message={message} />
         ) : (
           <Modal open={isOpen} onClose={onClose} onOK={onOK}>
             <Block productChanged={productChanged} />
           </Modal>
-        ) : <></>}
+        )}
         <Table
           currentProducts={currentProducts}
           color={color}
