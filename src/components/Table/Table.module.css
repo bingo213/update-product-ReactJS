@@ -1,3 +1,5 @@
+@import '../Config.css';
+
 table{
     border-collapse: collapse;
 }
@@ -8,7 +10,7 @@ table{
 }
 
 .btnContainer button{
-    background-color: teal;
+    background-color: var(--button-color);
     border: none;
     padding: 8px 20px;
     color: white;
@@ -25,7 +27,7 @@ table{
 }
 
 .btnContainer button:hover{
-    background-color: rgb(3, 80, 80);
+    background-color: var(--button-hover-color);
 }
 
 table, td, th{

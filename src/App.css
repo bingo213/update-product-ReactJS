@@ -1,12 +1,18 @@
-*{
+* {
   font-family: 'Roboto Condensed', sans-serif;
 }
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
 .App {
   text-align: center;
   padding: 0 30px 10px 30px;
 }
 
-.App .title{
+.App #title {
   font-weight: bold;
   font-size: 20px;
 }

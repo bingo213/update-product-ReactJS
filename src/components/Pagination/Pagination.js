@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Pagination.css'
+import style from './Pagination.module.css'
 
 function Pagination({ productPerPage, totalProduct, paginate }) {
   const pageNumber = [];
@@ -11,19 +11,18 @@ function Pagination({ productPerPage, totalProduct, paginate }) {
   const [activePage, setActivePage] = useState(1);
 
   return (
-    <div className="Pagination">
+    <div className={style.pagination}>
       <ul className="pageNumberContainer">
         {pageNumber.map(number => (
-          <li key={number}>
+          <li key={number} className={
+                number === activePage ? style.activePage : style.pageLink
+              }>
             <a
               onClick={() => {
                 paginate(number);
                 setActivePage(number);
               }}
-            //   href="#ListRentalUnit"
-              className={
-                number === activePage ? 'pageLink activePage' : 'pageLink'
-              }
+              href="#title"
             >
               {number}
             </a>

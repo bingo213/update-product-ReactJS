@@ -16,3 +16,8 @@ td{
 .productName{
     width: 200px;
 }
+
+.errMessage{
+    font-size: 11px;
+    color: rgb(233, 0, 0);
+}

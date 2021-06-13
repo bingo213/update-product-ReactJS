@@ -1,5 +1,4 @@
 import React from 'react';
-import ErrorMessage from '../../ErrorMessage/ErrorMessage';
 import styles from './TableRow.module.css';
 
 function TableRow(props) {
@@ -27,8 +26,17 @@ function TableRow(props) {
           type="text"
           name="name"
           defaultValue={name}
-          {...register('name' + id)}
+          {...register('name' + id, {
+            required: 'This field is required',
+            maxLength: {
+              value: 50,
+              message: 'Max length of product name is 50 characters',
+            },
+          })}
         />
+        {errors[`name${id}`] && (
+          <p className={styles.errMessage}>{errors[`name${id}`].message}</p>
+        )}
       </td>
       <td>
         <input
@@ -37,19 +45,23 @@ function TableRow(props) {
           name="sku"
           defaultValue={sku}
           {...register('sku' + id, {
-            required: "Required"
+            required: 'This field is required',
+            maxLength: {
+              value: 20,
+              message: 'Max length of sku is 20 characters',
+            },
           })}
         />
-        {/* <ErrorMessage message="SKU is required field"/> */}
+        {errors[`sku${id}`] && (
+          <p className={styles.errMessage}>{errors[`sku${id}`].message}</p>
+        )}
       </td>
       <td>
         <select
           className={styles.color}
           name="color"
           defaultValue={currentColor}
-          {...register('color' + id, {
-            required: 'Required',
-          })}
+          {...register('color' + id)}
         >
           <option disabled value="">
             Select Value

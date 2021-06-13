@@ -2,7 +2,7 @@ import React from 'react';
 import style from './Modal.module.css';
 import ReactDOM from 'react-dom';
 
-function Modal({ open, children, onClose }) {
+function Modal({ open, children, onClose, onOK }) {
   if (!open) return null;
   return ReactDOM.createPortal(
     <>
@@ -14,7 +14,7 @@ function Modal({ open, children, onClose }) {
         </div>
         {children}
         <div className={style.btnContainer}>
-          <span className={style.confirmBtn} onClick={onClose}>
+          <span className={style.confirmBtn} onClick={onOK}>
             OK
           </span>
         </div>

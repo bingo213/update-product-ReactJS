@@ -5,8 +5,7 @@ import style from './Table.module.css';
 import { useForm } from 'react-hook-form';
 
 function Table({ currentProducts, color, onSubmit }) {
-  // const { currentProducts, color, onSubmit } = props;
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, formState:{errors} } = useForm();
 
   return (
     <div className={style.tab}>
